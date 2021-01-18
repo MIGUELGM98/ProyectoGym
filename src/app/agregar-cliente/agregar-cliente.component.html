@@ -1,0 +1,68 @@
+<div class="container mt-3">
+    <form [formGroup]="formularioCliente" action="">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input formControlName="nombre" type="text" class="form-control" placeholder="Agregue el nombre">
+                    <div *ngIf="formularioCliente.controls['nombre'].invalid && formularioCliente.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['nombre'].errors.required">  El nombre es requerido</span>
+                      </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Apellido</label>
+                    <input formControlName="apellido" type="text" class="form-control" placeholder="Agregue el apellido">
+                    <div *ngIf="formularioCliente.controls['apellido'].invalid && formularioCliente.controls['apellido'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['apellido'].errors.required">  El apellido es requerido</span>
+                      </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Correo</label>
+                    <input formControlName="correo" type="email" class="form-control" placeholder="Agregue el correo">
+                    <div *ngIf="formularioCliente.controls['correo'].invalid && formularioCliente.controls['correo'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['correo'].errors.required">  Correo es requerido</span>
+                        <span *ngIf="formularioCliente.controls['correo'].errors.email">Correo no es valido</span>
+                      </div>
+                </div>        
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Telefono</label>
+                    <input formControlName="telefono" type="text" class="form-control" placeholder="Agregue el telefono">
+                    <div *ngIf="formularioCliente.controls['telefono'].invalid && formularioCliente.controls['telefono'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['telefono'].errors.required">  El telefono es requerido</span>
+                      </div>
+                </div>        
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Fecha nacimiento</label>
+                    <input formControlName="fechaNacimiento" type="date" class="form-control" placeholder="Agregue su fecha de nacimiento">
+                    <div *ngIf="formularioCliente.controls['fechaNacimiento'].invalid && formularioCliente.controls['fechaNacimiento'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['fechaNacimiento'].errors.required">  La fecha es requerido</span>
+                      </div>
+                </div>        
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="">Imagen</label>
+                    <input (change)="subirImagen($event) " formControlName="imgUrl" type="file" class="form-control-file" placeholder="Agregue su imagen">
+                    <div *ngIf="formularioCliente.controls['imgUrl'].invalid && formularioCliente.controls['imgUrl'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['imgUrl'].errors.required"> Ingrese una imagen</span>
+                      </div>
+                </div>        
+            </div>
+            <div class="col-sm-12">
+                <progressbar [value]="porcentajeSubida" type="danger" [striped]="true" >{{porcentajeSubida}}%</progressbar>
+            </div>
+            <br><br>
+            <button *ngIf="!esEditable" class="btn btn-primary" [disabled]="formularioCliente.invalid && !urlImagen" (click)="agregar()">Agregar</button>
+            <button *ngIf="esEditable" class="btn btn-primary" [disabled]="formularioCliente.invalid && !urlImagen" (click)="editar()">Editar</button>        </div>
+    </form>
+
+</div>
